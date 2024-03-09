@@ -32,6 +32,7 @@ pipeline {
         stage('init') {
             steps {
                 sh """
+                   cd vpc-test
                    terraform init -reconfigure
                 """   
             }
@@ -39,8 +40,9 @@ pipeline {
         stage('plan') {
             steps {
                 sh """
+                  cd vpc-test
                   terraform plan 
-                ""'
+                """
             }
                 
             
@@ -53,7 +55,10 @@ pipeline {
             }
                 steps {
                    sh """
+                   
+                     cd vpc-test
                      terraform apply -auto-approve
+
                     """   
                 }
             
